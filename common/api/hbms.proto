@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+option go_package = "github.com/odev-swe/hbms/common/api";
+
+package api;
+
+import "google/protobuf/timestamp.proto";
+
+message Booking {
+  string ID = 1;
+  string GuestName = 2;
+  string GuestEmail = 3;
+  google.protobuf.Timestamp CheckInDate = 4;
+  google.protobuf.Timestamp CheckOutDate = 5;
+  string RoomID = 6;
+  bool isCheckIn = 7;
+  bool isCheckOut = 8;
+  bool isPaid = 9;
+  string PaymentLink = 10;
+}
+
+message BookingRequest {
+  string GuestName = 1;
+  string GuestEmail = 2;
+  google.protobuf.Timestamp CheckInDate = 3;
+  google.protobuf.Timestamp CheckOutDate = 4;
+  string RoomID = 5;
+}
+
+service BookingServices {
+  rpc CreateBooking(BookingRequest) returns (Booking);
+}
